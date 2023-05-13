@@ -279,7 +279,7 @@ export class ChatGPT {
     if (!req.ok) {
       const text = await req.json();
 
-      throw new Error(`${text?.error?.message ? 'API' : 'Request'} error: ${text?.error?.message || req.statusText}`);
+      throw new Error(`${text?.error?.message ? 'API' : 'Request'} error: ${text?.error?.message || text?.error?.code || req.statusText}`);
     }
 
     if (typeof finBody === 'object' && finBody.stream) {
